@@ -1,6 +1,4 @@
 export default function Card(props) {
-  //const { name, photo, description, country, city, price, rooms } = props;
-  //const infoHotel = props;
   const price = [1, 2, 3, 4];
 
   return (
