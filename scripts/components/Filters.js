@@ -2,6 +2,36 @@ export default function Filters(props) {
   const hoteles = props.infoHotel
     .map((item) => item.country)
     .filter((item, index, arr) => arr.indexOf(item) === index);
+
+  const price = props.infoHotel
+    .map((item) => item.price)
+    .filter((item, index, arr) => arr.indexOf(item) === index)
+    .sort();
+
+  const size = props.infoHotel
+    .map((item) => sizeIcon(item.rooms))
+    .filter((item, index, arr) => arr.indexOf(item) === index)
+    .sort()
+    .reverse();
+
+  function priceIcon(valor) {
+    let prices = "";
+    for (let index = 0; index < valor; index++) {
+      prices += "$";
+    }
+    return prices;
+  }
+
+  function sizeIcon(valor) {
+    if (valor <= 10) {
+      return "Hotel pequeño";
+    } else if (valor > 10 && valor <= 20) {
+      return "Hotel mediano";
+    } else {
+      return "Hotel grande";
+    }
+  }
+
   return (
     <div id="filters" className="row p-3 m-0">
       <div className="form-group mt-1 mb-0">
@@ -45,10 +75,9 @@ export default function Filters(props) {
           </span>
           <select className="form-control" id="price">
             <option value="">Cualquier precio</option>
-            <option value="1">$</option>
-            <option value="2">$$</option>
-            <option value="3">$$$</option>
-            <option value="4">$$$$</option>
+            {price.map((item) => (
+              <option value={item}>{priceIcon(item)}</option>
+            ))}
           </select>
         </div>
       </div>
@@ -57,11 +86,11 @@ export default function Filters(props) {
           <span className="input-group-addon">
             <i className="fas fa-bed"></i>
           </span>
-          <select className="form-control" id="size">
+          <select className="form-control" id="rooms">
             <option value="">Cualquier tamaño</option>
-            <option value="small">Hotel pequeño</option>
-            <option value="medium">Hotel mediano</option>
-            <option value="large">Hotel grande</option>
+            {size.map((item) => (
+              <option value={item}>{item}</option>
+            ))}
           </select>
         </div>
       </div>
