@@ -1,14 +1,24 @@
 export default function Filters(props) {
-  const hoteles = props.infoHotel
+  moment.locale("es");
+  const {
+    infoHotel,
+    onChangeCountry,
+    onChangeFrom,
+    onChangeTo,
+    onChangePrice,
+    onChangeSize,
+  } = props;
+
+  const hoteles = infoHotel
     .map((item) => item.country)
     .filter((item, index, arr) => arr.indexOf(item) === index);
 
-  const price = props.infoHotel
+  const price = infoHotel
     .map((item) => item.price)
     .filter((item, index, arr) => arr.indexOf(item) === index)
     .sort();
 
-  const size = props.infoHotel
+  const size = infoHotel
     .map((item) => sizeIcon(item.rooms))
     .filter((item, index, arr) => arr.indexOf(item) === index)
     .sort()
@@ -39,7 +49,13 @@ export default function Filters(props) {
           <span className="input-group-addon">
             <i className="fas fa-sign-in-alt"></i>
           </span>
-          <input className="form-control" type="date" id="" />
+          <input
+            className="form-control"
+            type="date"
+            id="dateTo"
+            onChange={onChangeFrom}
+            min={moment().format("YYYY-MM-DD")}
+          />
         </div>
       </div>
       <div className="form-group mt-1 mb-0">
@@ -47,7 +63,13 @@ export default function Filters(props) {
           <span className="input-group-addon">
             <i className="fas fa-sign-out-alt"></i>
           </span>
-          <input className="form-control" type="date" id="" />
+          <input
+            className="form-control"
+            type="date"
+            id="dateFrom"
+            onChange={onChangeTo}
+            min={moment().format("YYYY-MM-DD")}
+          />
         </div>
       </div>
       <div className="form-group mt-1 mb-0">
@@ -55,8 +77,12 @@ export default function Filters(props) {
           <span className="input-group-addon">
             <i className="fas fa-globe"></i>
           </span>
-          <select className="form-control" name="provincia" id="country">
-            <option>Todos los países</option>
+          <select
+            className="form-control"
+            id="country"
+            onChange={onChangeCountry}
+          >
+            <option value="0">Todos los países</option>
             {hoteles.map((item, index) => (
               <option
                 key={`${index}-${item.slice(0, 3).toLowerCase()}`}
@@ -73,8 +99,8 @@ export default function Filters(props) {
           <span className="input-group-addon">
             <i className="fas fa-dollar-sign"></i>
           </span>
-          <select className="form-control" id="price">
-            <option value="">Cualquier precio</option>
+          <select className="form-control" id="price" onChange={onChangePrice}>
+            <option value="0">Cualquier precio</option>
             {price.map((item) => (
               <option value={item}>{priceIcon(item)}</option>
             ))}
@@ -86,8 +112,8 @@ export default function Filters(props) {
           <span className="input-group-addon">
             <i className="fas fa-bed"></i>
           </span>
-          <select className="form-control" id="rooms">
-            <option value="">Cualquier tamaño</option>
+          <select className="form-control" id="rooms" onChange={onChangeSize}>
+            <option value="0">Cualquier tamaño</option>
             {size.map((item) => (
               <option value={item}>{item}</option>
             ))}

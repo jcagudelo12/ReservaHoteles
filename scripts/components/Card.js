@@ -1,5 +1,22 @@
 export default function Card(props) {
-  const price = [1, 2, 3, 4];
+  const price = props.infoHotel
+    .map((item) => item.price)
+    .filter((item, index, arr) => arr.indexOf(item) === index)
+    .sort();
+  // const {
+  //   filteredByCountry,
+  //   filteredByDolar,
+  //   filteredByBed,
+  //   filteredByFrom,
+  //   filteredByTo,
+  // } = props;
+
+  // const countrySelection =
+  //   filteredByCountry == ""
+  //     ? hotelsData
+  //     : hotelsData.filter((hotel) => {
+  //         return hotel.country == props.filteredByCountry;
+  //       });
 
   return (
     <main className="container-fluid row mt-3 m-0 text-center">
