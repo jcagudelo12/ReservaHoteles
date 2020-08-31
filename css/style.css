@@ -1,3 +1,19 @@
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  position: relative;
+  padding-bottom: 6rem;
+  min-height: 100%;
+}
+
 header {
   background-color: #51a79b;
 }
@@ -7,10 +23,11 @@ main {
 }
 
 footer {
-  background-color: #292929;
-  position: fixed;
+  position: absolute !important;
   bottom: 0;
-  width: 100%;
+  padding: 1rem;
+  background-color: #51a79b;
+  color: #fff;
 }
 
 #filters {

@@ -1,7 +1,7 @@
 import Header from "./components/Header";
 import Filters from "./components/Filters";
 import Footer from "../scripts/components/Footer";
-import Card from "./components/Card";
+import Main from "./components/Main";
 
 class App extends React.Component {
   constructor(props) {
@@ -14,13 +14,13 @@ class App extends React.Component {
       dateFrom: "",
       dateTo: "",
     };
-    // this.handleHeaderChangeFrom = this.handleHeaderChangeFrom.bind(this);
-    // this.handleHeaderChangeTo = this.handleHeaderChangeTo.bind(this);
-    // this.handleChangeCountry = this.handleChangeCountry.bind(this);
+    this.handleHeaderChangeFrom = this.handleHeaderChangeFrom.bind(this);
+    this.handleHeaderChangeTo = this.handleHeaderChangeTo.bind(this);
+    this.handleChangeCountry = this.handleChangeCountry.bind(this);
+    this.handleChangePrice = this.handleChangePrice.bind(this);
+    this.handleChangeSize = this.handleChangeSize.bind(this);
   }
-  handleChangeCountry(e) {
-    this.setState({ country: e.target.value });
-  }
+
   handleHeaderChangeFrom(e) {
     let fecha = e.target.value;
     this.setState({
@@ -33,6 +33,10 @@ class App extends React.Component {
     this.setState({
       dateTo: fecha.valueOf(),
     });
+  }
+
+  handleChangeCountry(e) {
+    this.setState({ country: e.target.value });
   }
 
   handleChangePrice(e) {
@@ -56,13 +60,12 @@ class App extends React.Component {
           onChangePrice={this.handleChangePrice}
           onChangeSize={this.handleChangeSize}
         />
-        <Card
-          infoHotel={hotelsData}
-          // filteredByCountry={country}
-          // filteredByDolar={price}
-          // filteredByBed={size}
-          // filteredByFrom={dateFrom}
-          // filteredByTo={dateTo}
+        <Main
+          filteredByCountry={country}
+          filteredByPrice={price}
+          filteredBySize={size}
+          filteredByFrom={dateFrom}
+          filteredByTo={dateTo}
         />
         <Footer />
       </React.Fragment>

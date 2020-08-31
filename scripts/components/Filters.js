@@ -82,7 +82,7 @@ export default function Filters(props) {
             id="country"
             onChange={onChangeCountry}
           >
-            <option value="0">Todos los países</option>
+            <option value="">Todos los países</option>
             {hoteles.map((item, index) => (
               <option
                 key={`${index}-${item.slice(0, 3).toLowerCase()}`}
@@ -100,7 +100,7 @@ export default function Filters(props) {
             <i className="fas fa-dollar-sign"></i>
           </span>
           <select className="form-control" id="price" onChange={onChangePrice}>
-            <option value="0">Cualquier precio</option>
+            <option value="">Cualquier precio</option>
             {price.map((item) => (
               <option value={item}>{priceIcon(item)}</option>
             ))}
@@ -113,7 +113,7 @@ export default function Filters(props) {
             <i className="fas fa-bed"></i>
           </span>
           <select className="form-control" id="rooms" onChange={onChangeSize}>
-            <option value="0">Cualquier tamaño</option>
+            <option value="">Cualquier tamaño</option>
             {size.map((item) => (
               <option value={item}>{item}</option>
             ))}

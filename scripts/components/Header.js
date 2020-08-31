@@ -7,7 +7,7 @@ export default function Header(props) {
         <div className="col-12 p-3">
           <h1 className="text-center text-white">Reserva de Hoteles</h1>
           <p className="text-center text-white">
-            Establezca una fecha de entrada y salida
+            Establezca una fecha de ingreso y salida
           </p>
         </div>
       </header>
